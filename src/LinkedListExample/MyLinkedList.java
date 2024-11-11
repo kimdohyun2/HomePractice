@@ -1,5 +1,6 @@
 package LinkedListExample;
 
+
 class MyLinkedList {
     Node head;
     Node tail;
@@ -14,20 +15,21 @@ class MyLinkedList {
     }
 
     public void addHeadNode(Node node){ //앞에 추가
-        if (head == null) {
+        if (head == null) { //첫입력
             head = node;
             tail = node;
-        }
-        if (allowDuplication) {
-            head.front = node;
-            node.rear = head;
-            head = node;
-        } else if (checkDuplicate(node.value)) {
-            System.out.println("중복된 값 입니다");
-        } else {
-            head.front = node;
-            node.rear = head;
-            head = node;
+        }else {
+            if (allowDuplication) { //중복허용이라면
+                head.front = node;
+                node.rear = head;
+                head = node;
+            } else if (checkDuplicate(node.value)) { //중복허용이 아닌데 중복된값이 들어왔다면
+                System.out.println("중복된 값 입니다");
+            } else {
+                head.front = node;
+                node.rear = head;
+                head = node;
+            }
         }
     }
 
@@ -51,25 +53,21 @@ class MyLinkedList {
 
     public void showFromHead(){ //앞에서부터 출력
         Node current = head;
-        while (true) {
+        while (current != null) {
             System.out.println(current.value);
-            if(current.rear == null)
-                break;
             current = current.rear;
         }
     }
 
     public void showFromTail(){ //뒤에서부터 출력
         Node current = tail;
-        while (true) {
+        while (current != null) {
             System.out.println(current.value);
-            if(current.front == null)
-                break;
             current = current.front;
         }
     }
 
-    public void sortList(boolean ascending){
+    public void sortList(boolean ascending){ //정렬
         if(ascending){
 
         }else{
@@ -78,14 +76,12 @@ class MyLinkedList {
     }
     private boolean checkDuplicate(int inputValue){ //중복체크메서드
         Node current = head;
-        while(true){
+        while(current != null){
             if(current.value == inputValue){
                 return true;
             }
-            if(current.rear==null){
-                return false;
-            }
             current = current.rear;
         }
+        return false;
     }
 }

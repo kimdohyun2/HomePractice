@@ -18,7 +18,6 @@ public class Main {
         for (int i = 1; i <= 10; i++) {
             ll.addHeadNode(new Node(i));
         }
-        ll.showFromHead();
         for (int i = 1; i <= 10; i++) {
             ll.addHeadNode(new Node(i));
         }
