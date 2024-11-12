@@ -1,4 +1,4 @@
-package LinkedListExample;
+package linkedlist;
 
 import java.io.*;
 
@@ -12,15 +12,24 @@ public class Main {
         MyLinkedList ll;
         if(br.readLine().equals("Y")) {
             ll = new MyLinkedList(true);
-        }else{
+        }else {
             ll = new MyLinkedList();
         }
-        for (int i = 1; i <= 10; i++) {
-            ll.addHeadNode(new Node(i));
+        while(true){
+            System.out.print("\n정수를 입력하시오(탈출시 X입력) : ");
+            String input = br.readLine();
+            if(input.equals("X")){
+                break;
+            }else{
+                ll.addTailNode(new Node(Integer.parseInt(input)));
+                ll.showFromHead();
+            }
         }
-        for (int i = 1; i <= 10; i++) {
-            ll.addHeadNode(new Node(i));
-        }
+
+        System.out.print("정렬 전 : ");
+        ll.showFromHead();
+        ll.sortList();
+        System.out.print("\n\n정렬 후 : ");
         ll.showFromHead();
     }
 }
