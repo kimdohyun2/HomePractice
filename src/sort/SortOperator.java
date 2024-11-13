@@ -39,19 +39,19 @@ public class SortOperator {
         }
     }
 
-    void selectSort(int[] arr){
+    int[] selectSort(int[] arr){
 
     }
-    void insertSort(int[] arr){
+    int[] insertSort(int[] arr){
 
     }
-    void mergeSort(int[] arr){
+    int[] mergeSort(int[] arr){
 
     }
-    void heapSort(int[] arr){
+    int[] heapSort(int[] arr){
 
     }
-    void quickSort(int[] arr){
+    int[] quickSort(int[] arr){
 
     }
 
