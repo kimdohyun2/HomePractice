@@ -39,7 +39,7 @@ public class SortOperator {
         }
     }
 
-    int[] selectSort(int[] arr){
+    /*int[] selectSort(int[] arr){
 
     }
     int[] insertSort(int[] arr){
@@ -53,7 +53,7 @@ public class SortOperator {
     }
     int[] quickSort(int[] arr){
 
-    }
+    }*/
 
     void show(int[] arr){
         System.out.print("배열상태 : ");
