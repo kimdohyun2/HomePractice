@@ -2,7 +2,6 @@ package coding_test;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Dohyun10814 {
     public static void main(String[] args) throws IOException {
