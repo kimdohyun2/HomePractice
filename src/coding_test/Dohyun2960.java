@@ -18,17 +18,18 @@ public class Dohyun2960 {
         int count = 0, deleteK = 0;
         loop :
         for (int i = 2; i <= n; i++) {
-            for (int j = i; j <= n; j = j + i) {
-                if(eratos[j]) {
-                    eratos[j] = false;
-                    count++;
-                    if (count == k) {
-                        deleteK = j;
-                        break loop;
+            if(eratos[i]) {
+                for (int j = i; j <= n; j = j + i) {
+                    if (eratos[j]) {
+                        eratos[j] = false;
+                        count++;
+                        if (count == k) {
+                            deleteK = j;
+                            break loop;
+                        }
                     }
                 }
             }
-
         }
         System.out.println(deleteK);
     }
