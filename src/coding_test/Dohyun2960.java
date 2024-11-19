@@ -3,6 +3,7 @@ package coding_test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Dohyun2960 {
     public static void main(String[] args) throws IOException {
@@ -11,9 +12,7 @@ public class Dohyun2960 {
         int n = Integer.parseInt(input[0]);
         int k = Integer.parseInt(input[1]);
         boolean[] eratos = new boolean[n+1];
-        for(int i=2; i<=n; i++){
-            eratos[i] = true;
-        }
+        Arrays.fill(eratos, true);
 
         int count = 0, deleteK = 0;
         loop :
