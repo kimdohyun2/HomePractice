@@ -1,13 +1,13 @@
-package stack;
+package DataStructure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class StackExample {
+public class QueueExample {
     public static void main(String[] args){
-        Integer[] stack = new Integer[5];
-        int top = 0; //삽입할 위치
+        Integer[] queue = new Integer[6];//인덱스 0번은 temp로 사용;
+        int front = 1;
         loop :
         while (true) {
             try {
@@ -15,22 +15,29 @@ public class StackExample {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 String input = br.readLine();
                 if(input.equals("-")){
-                    if(top == 0){
-                        System.out.println("스택이 비었습니다");
+                    if(front == 1){
+                        System.out.println("큐가 비었습니다.");
+                    }else if(front == 2){
+                        queue[1] = null;
+                        front--;
                     }else{
-                        stack[top-1] = null;
-                        top--;
+                        for(int i=1; i<=front-1; i++){
+                            queue[i-1] = queue[i];
+                        }
+                        queue[front-1] = null;
+                        queue[0] = null;
+                        front--;
                     }
                 }else{
-                    if(top < 5) {
-                        stack[top] = Integer.parseInt(input);
-                        top++;
+                    if(front < 6){
+                        queue[front] = Integer.parseInt(input);
+                        front++;
                     }else{
-                        System.out.println("스택이 꽉 찼습니다.");
+                        System.out.println("큐가 꽉 찼습니다.");
                     }
                 }
-                System.out.print("현재 스택 : ");
-                for(Integer i : stack){
+                System.out.print("현재 큐 : ");
+                for(Integer i : queue){
                     if(i != null)
                         System.out.print(i+" ");
                 }
