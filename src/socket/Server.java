@@ -62,7 +62,6 @@ public class Server {
                     switch (st.nextToken()) {
                         case "1":
                             Product insertPro = gson.fromJson(st.nextToken(), Product.class);
-
                             products.add(insertPro);
                             break;
                         case "2":
