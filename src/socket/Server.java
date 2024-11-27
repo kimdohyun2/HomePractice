@@ -16,8 +16,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         clients = new HashSet<>();
-        try {
-            ServerSocket serverSocket = new ServerSocket(23456);
+        try (ServerSocket serverSocket = new ServerSocket(23456)){
             System.out.println("Server start!");
             while(true) {
                 ClientHandler ch = new ClientHandler(serverSocket.accept());
@@ -48,7 +47,7 @@ public class Server {
             String in;
             StringTokenizer st;
             try {
-                read();
+                readFile();
                 if(products == null){
                     products = new ArrayList<>();
                 }else{
@@ -59,30 +58,44 @@ public class Server {
                 loop:
                 while ((in = br.readLine()) != null) {
                     st = new StringTokenizer(in, "#");
+                    Product tempPro;
+                    Product already;
+                    int n;
                     switch (st.nextToken()) {
                         case "1":
-                            Product insertPro = gson.fromJson(st.nextToken(), Product.class);
-                            products.add(insertPro);
+                            tempPro = gson.fromJson(st.nextToken(), Product.class);
+                            already = alreadyPro(tempPro);
+                            if(already == null){
+                                products.add(tempPro);
+                            }else{
+                                already.price = tempPro.price;
+                                already.stock += tempPro.stock;
+                            }
                             break;
                         case "2":
-                            int n = Integer.parseInt(st.nextToken());
-                            Product updatePro = gson.fromJson(st.nextToken(), Product.class);
-                            Product pro = products.get(n-1);
-                            pro.name = updatePro.name;
-                            pro.price = updatePro.price;
-                            pro.stock = updatePro.stock;
+                            n = Integer.parseInt(st.nextToken());
+                            tempPro = gson.fromJson(st.nextToken(), Product.class);
+                            already = alreadyPro(tempPro);
+                            if(already == null){
+                                Product pro = products.get(n - 1);
+                                pro.name = tempPro.name;
+                                pro.price = tempPro.price;
+                                pro.stock = tempPro.stock;
+                            } else {
+                                products.remove(n-1);
+                                already.price = tempPro.price;
+                                already.stock += tempPro.stock;
+                            }
                             break;
                         case "3":
-                            int deleteNum = Integer.parseInt(st.nextToken());
-                            products.remove(deleteNum-1);
+                            n = Integer.parseInt(st.nextToken());
+                            products.remove(n-1);
                             break;
                         case "4":
-                            exit();
                             break loop;
                     }
-                    gson.toJson(products,bw);
-                    bw.newLine();
-                    bw.flush();
+                    writeFile();
+                    productsBroadcast();
                 }
             } catch (IOException e) {
                 System.out.println("Client disconnected!");
@@ -97,7 +110,7 @@ public class Server {
             }
         }
 
-        void read() throws FileNotFoundException {
+        void readFile() throws FileNotFoundException {
             try {
                 FileReader reader = new FileReader("products.json");
                 Type type = new TypeToken<ArrayList<Product>>(){}.getType();
@@ -106,11 +119,28 @@ public class Server {
             }
         }
 
-        void exit() throws IOException {
+        void writeFile() throws IOException {
             FileWriter writer = new FileWriter("products.json");
             gson.toJson(products, writer);
             writer.flush();
             writer.close();
+        }
+
+        Product alreadyPro(Product p){
+            for (Product product : products) {
+                if (product.name.equals(p.name)) {
+                    return product;
+                }
+            }
+            return null;
+        }
+
+        void productsBroadcast() throws IOException {
+            for(ClientHandler c : clients) {
+                gson.toJson(products, c.bw);
+                c.bw.newLine();
+                c.bw.flush();
+            }
         }
     }
 }

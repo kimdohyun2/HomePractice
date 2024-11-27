@@ -2,13 +2,14 @@ package socket;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class Client {
-    static class Receiver extends Thread{
+    static class Receiver extends Thread {
         Socket soc;
         BufferedReader sbr;
 
@@ -24,8 +25,9 @@ public class Client {
                 Gson gson = new Gson();
 
                 String in;
-                while((in= sbr.readLine()) != null){
-                    Type type = new TypeToken<ArrayList<Product>>(){}.getType();
+                while ((in = sbr.readLine()) != null) {
+                    Type type = new TypeToken<ArrayList<Product>>() {
+                    }.getType();
                     products = gson.fromJson(in, type);
                     soutProduct(products);
                 }
@@ -37,26 +39,27 @@ public class Client {
 
         void soutProduct(ArrayList<Product> products) throws IOException {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-            bw.write("[상품 목록]\n");
+            bw.write("\n[상품 목록]\n");
             bw.write("----------------------------------------------\n");
             bw.write("no       name                price       stock\n");
             bw.write("----------------------------------------------\n");
-            int i=1;
-            for(Product p : products){
-                bw.write(String.valueOf(i));bw.write("       ");
-                bw.write(p.name);bw.write("                ");
-                bw.write(String.valueOf(p.price));bw.write("       ");bw.write(String.valueOf(p.stock));
+            int i = 1;
+            for (Product p : products) {
+                bw.write(String.format("%-8d", i));
+                bw.write(String.format("%-20s", p.name));
+                bw.write(String.format("%-14d", p.price));
+                bw.write(String.format("%3d", p.stock));
                 bw.newLine();
                 i++;
             }
             bw.write("----------------------------------------------\n");
-            bw.write("메뉴 1.Creart | 2.Update | 3.Delete | 4.Exit\n");
+            bw.write("메뉴 1.Create | 2.Update | 3.Delete | 4.Exit\n");
             bw.write("입력 : ");
             bw.flush();
         }
     }
 
-    static class Sender extends Thread{
+    static class Sender extends Thread {
         Socket soc;
         BufferedWriter sbw;
 
@@ -69,16 +72,14 @@ public class Client {
         public void run() {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Gson gson = new Gson();
-
             Product product;
             int proNum;
             String name;
             int price;
             int stock;
-
-            try {
-                loop:
-                while (true) {
+            loop:
+            while (true) {
+                try {
                     String n = br.readLine();
                     StringBuilder sb = new StringBuilder();
                     sb.append(n).append("#");
@@ -123,7 +124,11 @@ public class Client {
                     sbw.write(sb.toString());
                     sbw.newLine();
                     sbw.flush();
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
+            }
+            try {
                 sbw.write("4");
                 sbw.newLine();
                 sbw.flush();
@@ -141,4 +146,3 @@ public class Client {
         sender.start();
     }
 }
-
