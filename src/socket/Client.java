@@ -26,9 +26,13 @@ public class Client {
 
                 String in;
                 while ((in = sbr.readLine()) != null) {
-                    Type type = new TypeToken<ArrayList<Product>>() {
-                    }.getType();
-                    products = gson.fromJson(in, type);
+                    if (in.equals("WrongNumber")) {
+                        System.out.println("잘못된 상품번호입니다.");
+                    } else {
+                        Type type = new TypeToken<ArrayList<Product>>() {
+                        }.getType();
+                        products = gson.fromJson(in, type);
+                    }
                     soutProduct(products);
                 }
 
@@ -77,58 +81,58 @@ public class Client {
             String name;
             int price;
             int stock;
-            loop:
-            while (true) {
-                try {
+            try {
+                loop:
+                while (true) {
                     String n = br.readLine();
                     StringBuilder sb = new StringBuilder();
                     sb.append(n).append("#");
-                    switch (n) {
-                        case "1":
-                            System.out.println("[상품 생성]");
-                            System.out.print("상품 이름 : ");
-                            name = br.readLine();
-                            System.out.print("상품 가격 : ");
-                            price = Integer.parseInt(br.readLine());
-                            System.out.print("상품 재고 : ");
-                            stock = Integer.parseInt(br.readLine());
-                            product = new Product(name, price, stock);
-                            sb.append(gson.toJson(product));
-                            break;
-                        case "2":
-                            System.out.println("[상품 수정]");
-                            System.out.print("상품 번호 : ");
-                            proNum = Integer.parseInt(br.readLine());
-                            sb.append(proNum).append("#");
-                            System.out.print("상품 이름 : ");
-                            name = br.readLine();
-                            System.out.print("상품 가격 : ");
-                            price = Integer.parseInt(br.readLine());
-                            System.out.print("상품 재고 : ");
-                            stock = Integer.parseInt(br.readLine());
-                            product = new Product(name, price, stock);
-                            sb.append(gson.toJson(product));
-                            break;
-                        case "3":
-                            System.out.println("[상품 삭제]");
-                            System.out.print("상품 번호 : ");
-                            proNum = Integer.parseInt(br.readLine());
-                            sb.append(proNum);
-                            break;
-                        case "4":
-                            break loop;
-                        default:
-                            System.out.println("잘못된 입력입니다!");
-                            break;
+                    try {
+                        switch (n) {
+                            case "1":
+                                System.out.println("[상품 생성]");
+                                System.out.print("상품 이름 : ");
+                                name = br.readLine();
+                                System.out.print("상품 가격 : ");
+                                price = Integer.parseInt(br.readLine());
+                                System.out.print("상품 재고 : ");
+                                stock = Integer.parseInt(br.readLine());
+                                product = new Product(name, price, stock);
+                                sb.append(gson.toJson(product));
+                                break;
+                            case "2":
+                                System.out.println("[상품 수정]");
+                                System.out.print("상품 번호 : ");
+                                proNum = Integer.parseInt(br.readLine());
+                                sb.append(proNum).append("#");
+                                System.out.print("상품 이름 : ");
+                                name = br.readLine();
+                                System.out.print("상품 가격 : ");
+                                price = Integer.parseInt(br.readLine());
+                                System.out.print("상품 재고 : ");
+                                stock = Integer.parseInt(br.readLine());
+                                product = new Product(name, price, stock);
+                                sb.append(gson.toJson(product));
+                                break;
+                            case "3":
+                                System.out.println("[상품 삭제]");
+                                System.out.print("상품 번호 : ");
+                                proNum = Integer.parseInt(br.readLine());
+                                sb.append(proNum);
+                                break;
+                            case "4":
+                                break loop;
+                            default:
+                                System.out.println("잘못된 입력입니다!");
+                                break;
+                        }
+                    }catch (NumberFormatException e){
+                        System.out.println("숫자를 입력하시오!");
                     }
                     sbw.write(sb.toString());
                     sbw.newLine();
                     sbw.flush();
-                } catch (Exception e) {
-                    System.out.println(e);
                 }
-            }
-            try {
                 sbw.write("4");
                 sbw.newLine();
                 sbw.flush();
