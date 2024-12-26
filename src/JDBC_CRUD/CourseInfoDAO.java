@@ -22,7 +22,7 @@ public class CourseInfoDAO {
     }
 
     public void csiSelect() throws IOException {
-        sql = "SELECT sub_num, sub_name, stu_num, pro_name FROM courseinfo join subject using (sub_num) join professor using (pro_num) order by sub_num, stu_num";
+        sql = "SELECT sub_num, sub_name, pro_name, stu_num FROM courseinfo join subject using (sub_num) join professor using (pro_num) order by sub_num, stu_num";
         ResultSet rs;
         StringBuilder sb = new StringBuilder();
         try {
@@ -34,10 +34,10 @@ public class CourseInfoDAO {
             sb.append("과목번호       과목             담당교수        학번\n");
             sb.append("----------------------------------------------------\n");
             while (rs.next()) {
-                sb.append(String.format("  %-9d", rs.getInt("sub_num")));
-                sb.append(String.format("%-16s", rs.getString("sub_name")));
-                sb.append(String.format("%-7s", rs.getString("pro_name")));
-                sb.append(String.format("%6d\n", rs.getInt("stu_num")));
+                sb.append(String.format("  %-9d", rs.getInt(1)));
+                sb.append(String.format("%-16s", rs.getString(2)));
+                sb.append(String.format("%-7s", rs.getString(3)));
+                sb.append(String.format("%6d\n", rs.getInt(4)));
             }
             sb.append("-----------------------------------------------------\n");
         } catch (SQLException e) {

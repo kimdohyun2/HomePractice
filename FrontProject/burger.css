@@ -1,0 +1,530 @@
+@font-face {
+    font-family: 'Flame';
+    font-weight: 500;
+    src: url('/font/Flame-Bold.woff') format('woff');
+}
+
+.swiper {
+    position: relative;
+    width: 1440px;
+    height: 480px;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin-right: 100px;
+    background-color: white;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: red;
+}
+
+#moveImgLeftbtn {
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+    z-index: 10;
+    left: 10px;
+}
+
+#moveImgRightbtn {
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+    z-index: 10;
+    right: 10px;
+}
+
+body {
+    background-color: #f2ebe6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.scrolltopHide {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s linear, visibility 0.4s linear;
+}
+
+.scrolltopShow {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s linear, visibility 0.4s linear;
+}
+
+#scrolltopbtn {
+    z-index: 1000;
+    position: fixed;
+    bottom: 20vh;
+    right: calc((100vw - 1340px)/2);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 52px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 25px;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+#header #menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 120px;
+}
+
+#header #menu span {
+    font-family: "Flame", serif;
+    font-weight: bolder;
+}
+
+#header #menu .menutext {
+    color: #502416;
+    font-size: 22px;
+    margin: 25px 25px 0px 25px;
+}
+
+#header #menu img {
+    margin-right: 40px;
+    width: 80px;
+    height: 80px;
+}
+
+#header #detailMenu {
+    position: relative;
+    display: none;
+    width: 100vw;
+    height: 320px;
+}
+
+#header #detailMenu ul {
+    position: absolute;
+    margin-top: 0px;
+}
+
+#header #detailMenu ul li {
+    margin-bottom: 13px;
+}
+
+.detailUL li a {
+    text-decoration: none;
+    color: #502416;
+    font-size: 15px;
+    font-family: "Flame", serif;
+}
+
+.arrow {
+    position: relative;
+    left: 10px;
+    top: -5px;
+    font-size: 7px;
+}
+
+#membership {
+    background-color: #502416;
+    color: white;
+    padding: 10px 25px;
+    margin: 25px 10px 0px 25px;
+    font-size: 22px;
+    border-radius: 70px;
+    cursor: pointer;
+}
+
+#Delivery {
+    background-color: #D72300;
+    color: white;
+    padding: 10px 30px;
+    margin: 25px 0px 0px 10px;
+    font-size: 22px;
+    border-radius: 70px;
+    cursor: pointer;
+}
+
+#moveImgDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 1440px;
+    height: 480px;
+    overflow: hidden;
+}
+
+#moveImgDiv #pagebtnlist {
+    z-index: 900;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 5px;
+    right: 50%;
+    transform: translate(50%, 0);
+}
+
+#moveImgDiv #pagebtnlist .pagebtn .bi-circle-fill {
+    font-size: 9px;
+}
+
+#moveImgDiv #pagebtnlist .pagebtn .curPage {
+    color: red;
+}
+
+#pausePlay {
+    border: none;
+    background-color: transparent;
+    z-index: 100;
+    position: relative;
+    right: 3px;
+    top: 2px;
+    color: white;
+    font-weight: 900;
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#youtubeDiv {
+    position: relative;
+    width: 1440px;
+    height: 605px;
+    background-color: black;
+}
+
+#youtubePlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#snsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1440px;
+    height: 160px;
+    background-color: #683a2f;
+}
+
+#snsDiv .snsBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 378px;
+    margin: 0;
+    padding: 0;
+}
+
+#deliveryDiv {
+    display: flex;
+    width: 1440px;
+    height: 480px;
+}
+
+#deliveryDiv #appimg {
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+}
+
+#deliveryDiv #delimg {
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+}
+
+#findShop {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1440px;
+    height: 600px;
+}
+
+#findShop h2 {
+    font-family: "Flame", serif;
+    font-weight: bolder;
+    margin-bottom: 16px;
+    font-size: 3rem;
+    line-height: 100%;
+    color: #502416;
+}
+
+#findShop p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #2e2e2e;
+    text-align: center;
+    background: none;
+}
+
+#findShopbtn {
+    font-family: "Flame", serif;
+    padding: 0px;
+    height: 50px;
+    line-height: 50px;
+    margin: 35px 0 55px;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #d72300;
+    color: white;
+    width: 200px;
+    cursor: pointer;
+}
+
+
+.shop_categorylist {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.shop_categorylist li {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 0 30px;
+    line-height: 100%;
+    box-sizing: border-box;
+}
+
+.shop_categorylist .bi {
+    font-size: 90px;
+    margin-bottom: 15px;
+}
+
+.WEB {
+    font-size: 1.125rem;
+    line-height: 134%;
+    font-weight: 900;
+}
+
+.shop_categorylist em {
+    line-height: 1.5;
+    color: red;
+    font-family: "Flame", serif;
+
+}
+
+.shop_categorylist li:not(:last-child) {
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.shop_categorylist .WEB {
+    display: block;
+}
+
+#business {
+    width: 1440px;
+    height: 200px;
+    background-image: url('/img/fire.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#phoneNum {
+    margin-right: 150px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: "Flame", serif;
+}
+
+.bi-telephone-fill {
+    margin-right: 15px;
+}
+
+#businessInfo {
+    margin: 0 150px;
+    width: 640px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#businessInfo h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+#businessInfo p {
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+#footerMenu {
+    background-color: #2a0200;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#footerMenu .footerMenuUl {
+    display: flex;
+    justify-content: space-between;
+    color: #bba391;
+    padding: 35px 0;
+    margin: 0;
+    border-bottom: 2px solid #f5ebdc;
+}
+
+#footerMenu .footerMenuUl .Menuli {
+    width: 229px;
+}
+
+#footerMenu .footerMenuUl .Menuli ul li {
+    margin: 10px 0;
+}
+
+#footerMenu .footerMenuUl a {
+    color: #bba391;
+    text-decoration: none;
+    font-family: "Flame", serif;
+}
+
+#footerMenu .footerMenuUl .menuTitle {
+    font-size: 1.7rem;
+    color: #f5ebdc;
+    font-family: "Flame", serif;
+}
+
+#footerMenu .footerMenuUl ul {
+    margin-top: 25px;
+}
+
+#footerClause {
+    display: flex;
+    justify-content: center;
+    background-color: #2a0200;
+    padding: 50px 0 0 0;
+    width: 100vw;
+}
+
+#footerBox {
+    height: 250px;
+    width: 1145px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#kinglogo {
+    display: block;
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-top: 0;
+    font-family: "Flame", serif;
+    color: #f5ebdc;
+}
+
+#companyAddress p {
+    color: #bba391;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.timhorton-icon {
+    width: 110px;
+    height: 23px;
+}
+
+.timhorton-icon use {
+    display: inline-block;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+#snsLogo {
+    display: block;
+    padding-top: 15px;
+    color: #f5ebdc;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#etc {
+    text-align: right;
+}
+
+#etc ul {
+    display: flex;
+    margin: 0;
+    color: #bba391;
+    font-weight: bolder;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#etc ul li:not(:last-child) {
+    border-right: 1px solid rgba(187, 163, 145, 0.2);
+    padding: 0 10px;
+}
+
+#etc ul li:last-child {
+    padding-left: 10px;
+}
+
+#footerbtnBox {
+    margin-top: 20px;
+}
+
+#footerbtnBox button {
+    font-size: 14px;
+    color: #f5ebdc;
+    font-weight: bold;
+    border-color: #bba391;
+    background-color: transparent;
+    padding: 5px 32px;
+    border-radius: 30px;
+    margin-left: 0px;
+    cursor: pointer;
+}
