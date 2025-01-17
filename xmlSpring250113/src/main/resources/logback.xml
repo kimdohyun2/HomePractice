@@ -1,0 +1,16 @@
+<configuration>
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+
+<!--    <logger name="org.springframework.web" level="DEBUG"/>-->
+<!--    <logger name="org.springframework.boot" level="DEBUG"/>-->
+    <!-- 콘솔 로그 출력 설정 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %-5level - %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

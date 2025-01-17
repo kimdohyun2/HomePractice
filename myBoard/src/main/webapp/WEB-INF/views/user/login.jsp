@@ -22,7 +22,7 @@
                     <c:if test="${fail==true}">
                         <div class="alert alert-danger">
                             <h2>로그인 실패</h2>
-                            <p>아이디랑 비밀번호 확인해라</p>
+                            <p>아이디랑 비밀번호를 확인하세요</p>
                         </div>
                     </c:if>
                     <form:form action="${root}user/login_pro" method="post" modelAttribute="loginProBean">

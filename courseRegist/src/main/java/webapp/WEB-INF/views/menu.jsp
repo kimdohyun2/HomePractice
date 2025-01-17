@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>강의목록</title>
+    <title>수강신청</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -100,7 +100,7 @@
                 <td>${course.cs_day}</td>
                 <td>${course.cs_time}</td>
                 <td>
-                    <a class="btn btn-primary btn-custom" href="${root}delete_pro?cs_num=${course.cs_num}">
+                    <a class="btn btn-danger btn-custom" href="${root}delete_pro?cs_num=${course.cs_num}">
                         취소
                     </a>
                 </td>

@@ -14,8 +14,8 @@ public class RestTestController {
     private UserService userService;
 
     @GetMapping("/user/chexistId/{user_id}")
-    public String existId(@PathVariable String user_id){
+    public boolean existId(@PathVariable String user_id){
         boolean chk = userService.existId(user_id);
-        return chk+"";
+        return chk;
     }
 }
