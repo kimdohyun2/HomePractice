@@ -29,6 +29,7 @@
         }
 
         function make(data) {
+
             let listHtml = "<table class='table table-bordered'>";
             listHtml += "<tr>";
             listHtml += "<th>번호</th>";
@@ -38,7 +39,7 @@
             listHtml += "<th>조회수</th>";
             listHtml += "</tr>";
 
-            $.each(data, function (index, obj) { // obj={"idx":5,"title":"게시판"~~ }
+            $.each(data, function (index, obj) {
                 listHtml += "<tr>";
                 listHtml += "<td>" + obj.idx + "</td>";
                 listHtml += "<td id='t" + obj.idx + "'><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";

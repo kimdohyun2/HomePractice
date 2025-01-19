@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="26e9b783-2d1b-415b-b4a0-5b679e5fbacf" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/coding_test/dec_2nd/Dohyun13305.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/coding_test/dec_2nd/Dohyun15657.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/coding_test/dec_2nd/Dohyun1904.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/coding_test/dec_2nd/Dohyun3273.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2ougUi7luncFI0kgEdVy7sGyLaQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Documents/practice/myBoard",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "라이브러리",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true",
+    "애플리케이션.Cilent.executor": "Run",
+    "애플리케이션.Client.executor": "Run",
+    "애플리케이션.Dohyun10610.executor": "Run",
+    "애플리케이션.Dohyun10610_fail.executor": "Run",
+    "애플리케이션.Dohyun1065.executor": "Run",
+    "애플리케이션.Dohyun10866.executor": "Run",
+    "애플리케이션.Dohyun1158.executor": "Run",
+    "애플리케이션.Dohyun11656.executor": "Run",
+    "애플리케이션.Dohyun13305.executor": "Run",
+    "애플리케이션.Dohyun13909.executor": "Run",
+    "애플리케이션.Dohyun15649.executor": "Run",
+    "애플리케이션.Dohyun15657.executor": "Run",
+    "애플리케이션.Dohyun17103.executor": "Run",
+    "애플리케이션.Dohyun1904.executor": "Run",
+    "애플리케이션.Dohyun2003.executor": "Debug",
+    "애플리케이션.Dohyun2217.executor": "Run",
+    "애플리케이션.Dohyun2960.executor": "Run",
+    "애플리케이션.Dohyun3273.executor": "Run",
+    "애플리케이션.LinkedList.executor": "Run",
+    "애플리케이션.Server.executor": "Run",
+    "애플리케이션.SortMain.executor": "Run",
+    "애플리케이션.TestSort.executor": "Run"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Cilent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="socket.Cilent" />
+      <module name="study" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="socket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="애플리케이션.Cilent" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="26e9b783-2d1b-415b-b4a0-5b679e5fbacf" name="변경" comment="" />
+      <created>1731724891157</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731724891157</updated>
+      <workItem from="1736651937006" duration="324000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/coding_test/dec_before/Dohyun17103.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/coding_test/dec_before/Dohyun17103.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/coding_test/dec_before/Dohyun17103.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="&#10;                        System.out.println(1);" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

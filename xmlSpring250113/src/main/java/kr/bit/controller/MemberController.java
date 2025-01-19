@@ -134,13 +134,19 @@ public class MemberController {
         return "member/imageForm";
     }
 
-    @RequestMapping("imageRegist")
+    @PostMapping("imageRegist")
     public String imageRegist(RedirectAttributes rttr, HttpSession session, HttpServletRequest request) throws IOException {
         Member temp = (Member)session.getAttribute("loginMemSession");
 
         int fileMaxSize = 4*1024*1024;
         String savePath = request.getRealPath("resources/img");
         String encoding = "UTF-8";
+
+        if(request.getContentType() == null){
+            rttr.addFlashAttribute("messageType", "실패");
+            rttr.addFlashAttribute("message", "사진 저장을 실패했습니다");
+            return "redirect:/member/imageForm";
+        }
 
         MultipartRequest multipartRequest = new MultipartRequest(request, savePath, fileMaxSize, encoding);
         File uploadedFile = multipartRequest.getFile("memberProfile");
@@ -163,19 +169,23 @@ public class MemberController {
                     out.write(buffer, 0, length);
                 }
             }
-        }
-        uploadedFile.delete();
+            uploadedFile.delete();
 
-        temp.setMemberProfile(fileName);
-        if(memberMapper.memberUpdate(temp) > 0) {
-            rttr.addFlashAttribute("messageType", "성공");
-            rttr.addFlashAttribute("message", "사진이 저장되었습니다");
-            session.setAttribute("loginMemSession", temp);
-            return "redirect:/";
+            temp.setMemberProfile(fileName);
+            if(memberMapper.memberUpdate(temp) > 0) {
+                rttr.addFlashAttribute("messageType", "성공");
+                rttr.addFlashAttribute("message", "사진이 저장되었습니다");
+                session.setAttribute("loginMemSession", temp);
+                return "redirect:/";
+            }else{
+                rttr.addFlashAttribute("messageType", "실패");
+                rttr.addFlashAttribute("message", "사진 저장을 실패했습니다");
+                return "redirect:/member/imageForm";
+            }
         }else{
             rttr.addFlashAttribute("messageType", "실패");
-            rttr.addFlashAttribute("message", "사진이 저장을 실패했습니다");
-            return "redirect:/member/imageRegist";
+            rttr.addFlashAttribute("message", "사진 저장을 실패했습니다");
+            return "redirect:/member/imageForm";
         }
     }
 }

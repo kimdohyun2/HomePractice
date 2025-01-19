@@ -13,40 +13,47 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function (){
-
+        $(document).ready(function () {
+            const image = document.createElement('img');
+            <c:choose>
+                <c:when test="${not empty loginMemSession.memberProfile}">
+                    image.src = "${root}resources/img/${loginMemSession.memberProfile}";
+                </c:when>
+                <c:otherwise>
+                    image.src = "${root}resources/img/defaultImage.webp";
+                </c:otherwise>
+            </c:choose>
+            const previewContainer = document.getElementById('imagePreview');
+            previewContainer.appendChild(image);
         })
 
         function previewImage() {
-            const file = document.getElementById("memberProfile").files[0];  // 선택된 파일을 가져옵니다.
+            const file = document.getElementById("memberProfile").files[0]; // 선택된 파일을 가져옵니다.
 
             if (file) {
                 const reader = new FileReader();
 
-                reader.onload = function(e) {
-                    const image = document.createElement('img');  // 이미지를 동적으로 생성합니다.
-                    image.src = e.target.result;  // 미리보기 이미지의 소스는 파일 내용을 사용합니다.
-                    image.alt = 'Selected Image';
-                    image.style.maxWidth = '300px';  // 이미지 크기 조정 (필요시)
-                    image.style.maxHeight = '300px';  // 이미지 크기 조정 (필요시)
+                reader.onload = function (e) {
+                    const image = document.createElement('img'); // 이미지를 동적으로 생성합니다.
+                    image.src = e.target.result; // 미리보기 이미지의 소스는 파일 내용을 사용합니다.
 
                     const previewContainer = document.getElementById('imagePreview');
-                    previewContainer.innerHTML = '';  // 이전 미리보기 내용을 비웁니다.
-                    previewContainer.appendChild(image);  // 새로운 이미지 미리보기를 추가합니다.
+                    previewContainer.innerHTML = ''; // 이전 미리보기 내용을 비웁니다.
+                    previewContainer.appendChild(image); // 새로운 이미지 미리보기를 추가합니다.
                 };
 
-                reader.readAsDataURL(file);  // 선택된 파일을 읽어서 data URL로 변환합니다.
+                reader.readAsDataURL(file); // 선택된 파일을 읽어서 data URL로 변환합니다.
             }
         }
 
-        function uploadImg(){
+        function uploadImg() {
             document.forms["fr"].submit();
         }
     </script>
     <style>
         img {
-            width : 140px;
-            height : 180px;
+            width: 140px;
+            height: 180px;
         }
     </style>
 </head>
@@ -60,7 +67,8 @@
                     <tr>
                         <td>아이디</td>
                         <td>
-                            <input type="text" class="form-control" id="memberID" name="memberID" value="${loginMemSession.memberID}" readonly/>
+                            <input type="text" class="form-control" id="memberID" name="memberID"
+                                   value="${loginMemSession.memberID}" readonly/>
                         </td>
 
                     </tr>
@@ -68,21 +76,24 @@
                         <td>사진 업로드</td>
                         <td>
                             <div id="imagePreview" style="margin-top: 20px;">
-                                <c:choose>
+                                <%--<c:choose>
                                     <c:when test="${not empty loginMemSession.memberProfile}">
                                         <img src="${root}resources/img/${loginMemSession.memberProfile}">
                                     </c:when>
                                     <c:otherwise>
                                         <img src="${root}resources/img/defaultImage.webp">
                                     </c:otherwise>
-                                </c:choose>
-                            </div><br>
-                            <input type="file" id="memberProfile" name="memberProfile" accept="image/*" value="사진 선택" onchange="previewImage()">
+                                </c:choose>--%>
+                            </div>
+                            <br>
+                            <input type="file" id="memberProfile" name="memberProfile" accept="image/*" value="사진 선택"
+                                   onchange="previewImage()">
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="button" class="btn btn-primary" value="사진업로드" style="float: right" onclick="uploadImg()"/>
+                            <input type="button" class="btn btn-primary" value="사진업로드" style="float: right"
+                                   onclick="uploadImg()"/>
                         </td>
                     </tr>
                 </table>

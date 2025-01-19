@@ -54,8 +54,12 @@
                 return;
             }
 
-            if ($("#memberAge").val() === "") {
-                $("#memberAge").val("0");
+            let inputAge = $("#memberAge").val();
+            if (inputAge === "" || isNaN(inputAge)) {
+                $("#modalTitle").html('잘못된 입력 정보');
+                $("#idcheck").html('나이는 숫자만 입력가능합니다');
+                $("#myModal").modal("show");
+                return;
             }
             document.forms["fr"].submit();
         }

@@ -34,4 +34,5 @@ public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServlet
         encodingFilter.setEncoding("UTF-8");
         return new Filter[] {encodingFilter};
     }
+
 }

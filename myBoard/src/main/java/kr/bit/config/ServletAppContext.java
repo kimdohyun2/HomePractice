@@ -30,11 +30,11 @@ public class ServletAppContext implements WebMvcConfigurer {
     @Autowired
     private BoardService boardService;
 
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        WebMvcConfigurer.super.configureViewResolvers(registry);
-        registry.jsp("/WEB-INF/views/",".jsp");
-    }
+//    @Override
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        WebMvcConfigurer.super.configureViewResolvers(registry);
+//        registry.jsp("/WEB-INF/views/",".jsp");
+//    }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         WebMvcConfigurer.super.addResourceHandlers(registry);
