@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="kr.bit.mapper.MemberMapper">
+
+    <resultMap type="kr.bit.entity.Member" id="memberMap">
+        <id property="memberIdx" column="memberIdx"/>
+        <result property="memberID" column="memberIdx"/>
+        <result property="memberPw" column="memberPw"/>
+        <result property="memberName" column="memberName"/>
+        <result property="memberAge" column="memberAge"/>
+        <result property="memberGender" column="memberGender"/>
+        <result property="memberEmail" column="memberEmail"/>
+        <result property="memberProfile" column="memberProfile"/>
+        <collection property="authList" resultMap="authMap"/>
+    </resultMap>
+
+    <resultMap type="kr.bit.entity.MemberAuth" id="authMap">
+        <id property="no" column="no"/>
+        <result property="memberID" column="memberID"/>
+        <result property="auth" column="auth"/>
+    </resultMap>
+
+    <select id="memberDoubleCheck" resultType="kr.bit.entity.Member">
+        select * from mem_table where memberID=#{memberID}
+    </select>
+
+    <insert id="register" parameterType="kr.bit.entity.Member">
+        insert into mem_table(memberIdx, memberID, memberPw,memberName, memberAge, memberGender,
+                              memberEmail ,memberProfile) values((select IFNULL(MAX(memberIdx)+1,1) from mem_table mem),
+                                                                 #{memberID}, #{memberPw}, #{memberName}, #{memberAge}, #{memberGender}, #{memberEmail}, #{memberProfile})
+    </insert>
+    
+    <select id="getLoginMember" parameterType="kr.bit.entity.Member" resultMap="memberMap">
+        select * from
+        mem_table mem left join member_auth auth
+        on mem.memberID = auth.memberID
+        where mem.memberID=#{memberID};
+    </select>
+
+    <update id="memberUpdate" parameterType="kr.bit.entity.Member">
+        update member_table set memberPw=#{memberPw}, memberAge=#{memberAge}, memberEmail=#{memberEmail}, memberProfile=#{memberProfile} where memberID=#{memberID}
+    </update>
+
+    <insert id="authRegister" parameterType="kr.bit.entity.MemberAuth">
+        insert into member_auth(memberID, auth) values(#{memberID}, #{auth})
+    </insert>
+
+</mapper>

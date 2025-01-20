@@ -1,0 +1,29 @@
+참조타입 기본타입 차이
+
+객체지향언어의 특징
+
+오버로딩 오버라이딩
+
+접근제한자
+
+call by value & call by reference
+
+Abstract / Interface 차이
+Abstract : 추상클래스 추상메소드를 하나 이상 포함하고 있는 클래스
+반드시 구현하지 않아도 된다 exdens를 통하여 상속하고 다중 상속이 불가능하다
+
+Interface는 다중상속이 가능하며 반드시 모든 메서드를 구현해야한다
+
+싱글톤
+
+라이브러리 프레임워크
+
+자바컬렉션
+set map list
+
+프로세스 스레드
+wait/nofity, synchronize함수와 블록
+
+Java의 예외(Exception)와 에러(Error)의 차이점
+Optional 클래스에 대해 설명해라.
+Functional Interface란?
