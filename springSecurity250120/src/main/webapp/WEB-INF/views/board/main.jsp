@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<c:set var="root" value="${pageContext.request.contextPath}/"/>
+<!--현재 스프링 시큐리티에서 인증된 사용자 객체 가져옴(UserDetails)-->
+<c:set var="memVo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -18,7 +24,7 @@
 
         function loadList() {
             $.ajax({
-                url: "board/all",
+                url: "${root}board/all",
                 type: "get",
                 dataType: "json",
                 success: make,
@@ -53,15 +59,15 @@
                 listHtml += "<td colspan='4'>";
                 listHtml += "<textarea id='ta" + obj.idx + "' readonly rows='7' class='form-control'>" + obj.content + "</textarea>";
                 listHtml += "<br/>";
-                if("${loginMemSession.memberID}" === obj.memberID){
-                listHtml += "<span id='ub" + obj.idx + "'><button class='btn btn-success btn-sm' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
-                listHtml += "<button class='btn btn-danger btn-sm' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
+                if ("${memVo.member.memberID}" === obj.memberID) {
+                    listHtml += "<span id='ub" + obj.idx + "'><button class='btn btn-success btn-sm' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
+                    listHtml += "<button class='btn btn-danger btn-sm' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
                 }
                 listHtml += "</td>";
                 listHtml += "</tr>";
 
             });
-            <c:if test="${not empty loginMemSession}">
+            <c:if test="${not empty memVo.member}">
             listHtml += "<tr>";
             listHtml += "<td colspan='5'>";
             listHtml += "<button class='btn btn-primary btn-sm' onclick='goForm()'>글쓰기</button>";
@@ -91,7 +97,7 @@
             let fData = $("#frm").serialize();
 
             $.ajax({
-                url: "board/new",
+                url: "${root}board/new",
                 type: "post",
                 data: fData,
                 dataType: "text",
@@ -111,10 +117,12 @@
 
         function goContent(idx) {
             if ($("#c" + idx).css("display") == "none") {
-
                 $.ajax({
-                    url: "board/" + idx,
+                    url: "${root}board/" + idx,
                     type: "put",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(csrfName, csrfToken);
+                    },
                     success: function (res) {
                         $("#cnt" + idx).html(res);
                     },
@@ -132,8 +140,11 @@
 
         function goDelete(idx) {
             $.ajax({
-                url: "board/" + idx,
+                url: "${root}board/" + idx,
                 type: "delete",
+                beforeSend: function (xhr){
+                    xhr.setRequestHeader(csrfName,csrfToken)
+                },
                 success: function (response) {
                     alert(response);
                     loadList();
@@ -162,10 +173,13 @@
                 "content": $("#ta" + idx).val()
             };
             $.ajax({
-                url: "board/update",
+                url: "${root}board/update",
                 type: "put",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(update),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(csrfName, csrfToken);
+                },
                 success: function (res) {
                     alert(res);
                     loadList();
@@ -180,14 +194,15 @@
 </head>
 <body>
 <div class="container">
-    <jsp:include page="always/header.jsp"/>
+    <jsp:include page="../always/header.jsp"/>
     <h2>Spring Legacy</h2>
     <div class="panel panel-default">
         <div class="panel-heading">BOARD</div>
         <div class="panel-body" id="view">Panel Content</div>
         <div class="panel-body" id="wfrom" style="display: none">
             <form id="frm">
-                <input type="hidden" name="memberID" value="${loginMemSession.memberID}"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input type="hidden" name="memberID" value="${memVo.member.memberID}"/>
                 <table class="table">
                     <tr>
                         <td>제목</td>
@@ -200,7 +215,7 @@
                     <tr>
                         <td>작성자</td>
                         <td><input type="text" id="writer" name="writer" class="form-control"
-                                   value="${loginMemSession.memberName}" readonly/></td>
+                                   value="${memVo.member.memberName}" readonly/></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center">

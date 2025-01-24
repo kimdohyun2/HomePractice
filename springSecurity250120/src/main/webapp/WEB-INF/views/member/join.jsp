@@ -132,7 +132,6 @@
                             <input type="checkbox" name="authList[0].auth" value="ROLE_USER">ROLE_USER &nbsp;
                             <input type="checkbox" name="authList[1].auth" value="ROLE_VIP">ROLE_VIP &nbsp;
                             <input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN">ROLE_ADMIN &nbsp;
-
                         </td>
                     </tr>
 

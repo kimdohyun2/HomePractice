@@ -5,7 +5,7 @@
 
     <resultMap type="kr.bit.entity.Member" id="memberMap">
         <id property="memberIdx" column="memberIdx"/>
-        <result property="memberID" column="memberIdx"/>
+        <result property="memberID" column="memberID"/>
         <result property="memberPw" column="memberPw"/>
         <result property="memberName" column="memberName"/>
         <result property="memberAge" column="memberAge"/>
@@ -39,11 +39,15 @@
     </select>
 
     <update id="memberUpdate" parameterType="kr.bit.entity.Member">
-        update member_table set memberPw=#{memberPw}, memberAge=#{memberAge}, memberEmail=#{memberEmail}, memberProfile=#{memberProfile} where memberID=#{memberID}
+        update mem_table set memberPw=#{memberPw}, memberAge=#{memberAge}, memberEmail=#{memberEmail}, memberProfile=#{memberProfile} where memberID=#{memberID}
     </update>
 
     <insert id="authRegister" parameterType="kr.bit.entity.MemberAuth">
         insert into member_auth(memberID, auth) values(#{memberID}, #{auth})
     </insert>
+
+    <delete id="authDelete" parameterType="java.lang.String">
+        delete from member_auth where memberID = #{memberID}
+    </delete>
 
 </mapper>

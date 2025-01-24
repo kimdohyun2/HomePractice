@@ -8,7 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberMapper {
     Member memberDoubleCheck(String memberID);
     int register(Member member); //가입성공 1, 실패0
-    Member getLoginMember(Member loginMemberBean);
+    Member getLoginMember(String memberID);
     int memberUpdate(Member member);
     int authRegister(MemberAuth memberAuth);
+    int authDelete(String memberID);
 }

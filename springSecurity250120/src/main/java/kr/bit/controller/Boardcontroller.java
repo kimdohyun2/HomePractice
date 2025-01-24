@@ -15,8 +15,8 @@ public class Boardcontroller {
 
     private static final Logger logger = LoggerFactory.getLogger(Boardcontroller.class);
 
-    @RequestMapping("/main")
-    public String main(Model model) {
-        return "main";
+    @RequestMapping("board/main")
+    public String boardmain(Model model) {
+        return "board/main";
     }
 }

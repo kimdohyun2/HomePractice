@@ -2,7 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
+<c:set var="memVo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
 <html>
 <head>
     <title>Title</title>
@@ -16,8 +18,8 @@
         $(document).ready(function () {
             const image = document.createElement('img');
             <c:choose>
-                <c:when test="${not empty loginMemSession.memberProfile}">
-                    image.src = "${root}resources/img/${loginMemSession.memberProfile}";
+                <c:when test="${not empty memVo.member.memberProfile}">
+                    image.src = "${root}resources/img/${memVo.member.memberProfile}";
                 </c:when>
                 <c:otherwise>
                     image.src = "${root}resources/img/defaultImage.webp";
@@ -62,13 +64,14 @@
     <jsp:include page="../always/header.jsp"/>
     <div class="panel panel-default">
         <div class="panel-body">
-            <form name="fr" action="${root}member/imageRegist" method="post" enctype="multipart/form-data">
+            <form name="fr" action="${root}member/imageRegist?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+<%--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
                 <table class="table table-borderd">
                     <tr>
                         <td>아이디</td>
                         <td>
                             <input type="text" class="form-control" id="memberID" name="memberID"
-                                   value="${loginMemSession.memberID}" readonly/>
+                                   value="${memVo.member.memberID}" readonly/>
                         </td>
 
                     </tr>

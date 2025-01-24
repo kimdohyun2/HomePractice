@@ -17,6 +17,12 @@
             if (${not empty messageType}) {
                 $("#myModal").modal("show");
             }
+            if(${param.error!=null}){
+                $("#modalTitle").html('실패 조이고');
+                $("#idcheck").html('아이디 비번 확인해라');
+                $(".close").text("실패");
+                $("#myModal").modal("show");
+            }
         })
     </script>
 </head>
@@ -26,16 +32,17 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <form name="fr" action="${root}member/loginPro" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <table class="table table-borderd">
                     <tr>
                         <td >아이디</td>
-                        <td><input type="text" class="form-control" id="memberID" name="memberID"/></td>
+                        <td><input type="text" class="form-control" name="username" id="memberID"/></td>
                     </tr>
 
                     <tr>
                         <td >비밀번호</td>
                         <td>
-                            <input type="password" class="form-control" name="memberPw" id="memberPw"/>
+                            <input type="password" class="form-control" name="password" id="memberPw"/>
                         </td>
                     </tr>
                     <tr>

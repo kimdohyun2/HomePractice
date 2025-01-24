@@ -2,7 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
+<!--현재 스프링 시큐리티에서 인증된 사용자 객체 가져옴(UserDetails)-->
+<c:set var="memVo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -14,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function (){
-            if("${loginMemSession.memberGender}" == "남자"){
+            if("${memVo.member.memberGender}" == "남자"){
                 $("#man").attr("checked", true);
             }else{
                 $("#man").attr("checked", false);
@@ -58,18 +63,19 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <form name="fr" action="${root}member/updatePro" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <table class="table table-borderd">
                     <input type="hidden" id="memberPw" name="memberPw">
                     <tr>
                         <td>아이디</td>
                         <td>
-                            <input type="text" class="form-control" id="memberID" name="memberID" value="${loginMemSession.memberID}" readonly/>
+                            <input type="text" class="form-control" id="memberID" name="memberID" value="${memVo.member.memberID}" readonly/>
                         </td>
                     </tr>
 
                     <tr>
                         <td>이름</td>
-                        <td><input type="text" class="form-control" id="memberName" name="memberName" value="${loginMemSession.memberName}" readonly/></td>
+                        <td><input type="text" class="form-control" id="memberName" name="memberName" value="${memVo.member.memberName}" readonly/></td>
                     </tr>
 
                     <tr>
@@ -105,6 +111,23 @@
                     <tr>
                         <td>이메일</td>
                         <td><input type="email" class="form-control" id="memberEmail" name="memberEmail"/></td>
+                    </tr>
+                    <tr>
+                        <td placeholder="권한 입력해라">권한</td>
+                        <td colspan="2">
+                            <input type="checkbox" name="authList[0].auth" value="ROLE_USER"
+                            <security:authorize access="hasRole('ROLE_USER')">
+                                   checked
+                            </security:authorize>>ROLE_USER &nbsp;
+                            <input type="checkbox" name="authList[1].auth" value="ROLE_VIP"
+                            <security:authorize access="hasRole('ROLE_VIP')">
+                                   checked
+                            </security:authorize>>ROLE_VIP &nbsp;
+                            <input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN"
+                            <security:authorize access="hasRole('ROLE_ADMIN')">
+                                   checked
+                            </security:authorize>>ROLE_ADMIN &nbsp;
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
