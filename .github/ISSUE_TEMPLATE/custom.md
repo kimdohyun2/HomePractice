@@ -1,12 +1,3 @@
----
-name: Custom issue template
-about: 체크리스트 이슈 템플릿
-title: ''
-labels: ''
-assignees: ''
-
----
-
 name: Feature Request
 description: 새로운 기능 요청
 labels: enhancement
