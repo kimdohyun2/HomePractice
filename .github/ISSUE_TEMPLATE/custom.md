@@ -1,22 +1,18 @@
-name: Feature Request
-description: 새로운 기능 요청
-labels: enhancement
-body:
-  - type: markdown
-    attributes:
-      value: "## 🚀 새로운 기능 요청"
+---
+name: 기능 요청
+about: 새로운 기능을 제안할 때 사용하세요.
+title: "[Feature] "
+labels: ["enhancement"]
+assignees: ["username"]
+---
 
-  - type: textarea
-    id: description
-    attributes:
-      label: "설명"
-      description: "이 기능에 대한 간단한 설명을 작성하세요."
+## 🚀 기능 설명
+어떤 기능을 추가하고 싶은지 간단히 설명해주세요.
 
-  - type: checkboxes
-    id: tasks
-    attributes:
-      label: "할 일 체크리스트"
-      options:
-        - label: "UI 디자인"
-        - label: "백엔드 API 연결"
-        - label: "테스트 코드 작성"
+## 📌 작업 내용
+- [ ] UI 디자인 수정
+- [ ] API 연동
+- [ ] 테스트 코드 작성
+
+## 💡 추가 정보
+관련 참고 자료나 추가 설명이 있다면 여기에 적어주세요.
